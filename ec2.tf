@@ -11,7 +11,7 @@ resource "aws_instance" "first_instance" {
       "sudo yum -y update -y",
       "sudo yum install -y docker",
       "sudo service docker start",
-      "docker build https://github.com/dan77uk/docker_repo -t final:1"
+      "docker image build https://github.com/dan77uk/docker_repo -t final:1"
     ]
   }
 
