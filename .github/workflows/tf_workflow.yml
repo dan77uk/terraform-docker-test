@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy App
+on: push
+
+jobs:
+  push_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Code
+        uses: actions/checkout@v3
+      - name: inspect download
+        run: |
+          pwd
+          ls -lart
+      # - name: Deploy a Container for testing
+      #   run: |
+      #     docker image pull nginx
+      #     docker image ls
+      #     docker conteiner run -d -p 8080:80 nginx
+      # - name: Test Web Deployment
+      #   run: |
+      #     python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)"
+      #     curl -s localhost:8080
