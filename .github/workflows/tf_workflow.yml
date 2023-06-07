@@ -5,19 +5,22 @@ jobs:
   push_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Download Code
-        uses: actions/checkout@v3
-      - name: inspect download
+      - uses: actions/checkout@v1
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: 0.13.4
+      - name: Terraform apply
         run: |
-          pwd
-          ls -lart
-          terraform apply
-      # - name: Deploy a Container for testing
-      #   run: |
-      #     docker image pull nginx
-      #     docker image ls
-      #     docker container run -d -p 8080:80 nginx
-      # - name: Test Web Deployment
-      #   run: |
-      #     python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)"
-      #     curl -s localhost:8080
+          terraform init
+          terraform plan
+          terraform apply -auto-approve
+        # - name: Deploy a Container for testing
+        #   run: |
+        #     docker image pull nginx
+        #     docker image ls
+        #     docker container run -d -p 8080:80 nginx
+        # - name: Test Web Deployment
+        #   run: |
+        #     python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)"
+        #     curl -s localhost:8080
