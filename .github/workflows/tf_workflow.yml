@@ -17,7 +17,7 @@ jobs:
       #   run: |
       #     docker image pull nginx
       #     docker image ls
-      #     docker conteiner run -d -p 8080:80 nginx
+      #     docker container run -d -p 8080:80 nginx
       # - name: Test Web Deployment
       #   run: |
       #     python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)"

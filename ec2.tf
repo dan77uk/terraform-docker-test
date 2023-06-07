@@ -6,20 +6,22 @@ resource "aws_instance" "first_instance" {
     Name = "First Instance"
   }
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo yum -y install nginx",
-  #     "sudo systemctl start nginx"
-  #   ]
-  # }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum -y update -y",
+      "sudo yum install -y docker",
+      "sudo service docker start",
+      "docker build https://github.com/dan77uk/docker_repo -t final:1"
+    ]
+  }
 
-  # connection {
-  #   agent = false
-  #   type = "ssh"
-  #   user = "ec2-user"
-  #   private_key = file("/Users/dan/.ssh/ssh_test.pem")
-  #   host = self.public_ip
-  # }
+  connection {
+    agent = false
+    type = "ssh"
+    user = "ec2-user"
+    private_key = file("/Users/dan/.ssh/ssh_test.pem")
+    host = self.public_ip
+  }
 
 
 
