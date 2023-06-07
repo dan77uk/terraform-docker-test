@@ -6,15 +6,18 @@ resource "aws_instance" "first_instance" {
     Name = "First Instance"
   }
 
+  key_name = "ssh_test"
+
   provisioner "remote-exec" {
     inline = [
-      "sudo yum -y update -y",
-      "sudo yum install -y docker",
-      "install git",
-      "git clone git@github.com:dan77uk/docker_repo.git",
-      "sudo service docker start",
-      "docker image build https://github.com/dan77uk/docker_repo -t final:1",
-      "docker run -p 8080:80 run-from-prov:1"
+      "sudo yum update -y",
+      "sudo yum install docker -y",
+      "sudo yum install git -y",
+      "git clone https://github.com/dan77uk/docker_repo.git",
+      "sudo systemctl start docker",
+      "cd ./docker_repo",
+      "sudo docker image build . -t final:1",
+      "sudo docker run -d -p 8080:80 final:1"
     ]
   }
 
