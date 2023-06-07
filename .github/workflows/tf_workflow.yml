@@ -11,6 +11,7 @@ jobs:
         run: |
           pwd
           ls -lart
+          terraform apply
       # - name: Deploy a Container for testing
       #   run: |
       #     docker image pull nginx
